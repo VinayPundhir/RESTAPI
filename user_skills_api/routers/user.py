@@ -21,7 +21,7 @@ def del_info(id:int,db:Session=Depends(get_db)):
 
 @router.put("/update/{id}", status_code=status.HTTP_202_ACCEPTED)
 def update_info(id:int,usr:schema.UpdateUsr, db:Session=Depends(get_db)):
-    return user.delete(id,usr,db)
+    return user.update(id,usr,db)
 
 
 @router.get("/all_usrs", response_model=list[schema.ShowUser])

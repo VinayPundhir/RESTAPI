@@ -24,7 +24,12 @@ def update(id:int,usr:schema.User,db:Session):
     usr_obj = db.query(models.User).filter(models.User.id == id)
     if not usr_obj.first():
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="usr does not exist")
-    usr_obj.update({models.User.name: usr.name}, synchronize_session=False)
+    if usr.name:
+        usr_obj.update({models.User.name: usr.name}, synchronize_session=False)
+    if usr.email:
+        usr_obj.update({models.User.email: usr.email}, synchronize_session=False)
+    if usr.age:
+        usr_obj.update({models.User.age: usr.age}, synchronize_session=False)
     db.commit()
     return usr
 
