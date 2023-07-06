@@ -19,4 +19,3 @@ def login(data:OAuth2PasswordRequestForm=Depends(),db:Session=Depends(database.g
         data={"sub": usr.name}, expires_delta=access_token_expires
     )
     return {"access_token": access_token, "token_type": "bearer"}
-    return usr
